@@ -55,12 +55,48 @@ public class GameController {
 
         Player p = board.getCurrentPlayer();
 
+        turnRitght(p);
         if (space.getPlayer() == null) {
             p.setSpace(space);
             board.getNextPlayer();
         }
-
     }
+
+
+    public void turnRitght(Player p){
+        Heading h = p.getHeading();
+        switch (h){
+            case NORTH: p.setHeading(Heading.EAST);
+                break;
+            case SOUTH: p.setHeading(Heading.WEST);
+                break;
+            case EAST:  p.setHeading(Heading.SOUTH);
+                break;
+            case WEST:  p.setHeading(Heading.NORTH);
+                break;
+        }
+    }
+
+//    public void moveCard(Player p, int moveAmount){
+//        Heading h = p.getHeading();
+//        Space s = p.getSpace();
+//        switch (h) {
+//            case NORTH:
+//                Space a = new Space(this.board, s.x+moveAmount, s.y);
+//                p.setSpace(a);
+//                break;
+//            case SOUTH:
+//                p.setHeading(Heading.WEST);
+//                break;
+//            case EAST:
+//                p.setHeading(Heading.SOUTH);
+//                break;
+//            case WEST:
+//                p.setHeading(Heading.NORTH);
+//                break;
+//        }
+//    }
+
 
     /**
      * A method called when no corresponding controller operation is implemented yet.
