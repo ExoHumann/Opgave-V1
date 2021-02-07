@@ -57,10 +57,8 @@ public class GameController {
 
         if (space.getPlayer() == null) {
             p.setSpace(space);
+            board.getNextPlayer();
         }
-
-        board.getNextPlayer();
-
 
     }
 
