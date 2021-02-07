@@ -53,6 +53,15 @@ public class GameController {
         //   - the counter of moves in the game should be increased by one
         //     if the player is moved
 
+        Player p = board.getCurrentPlayer();
+
+        if (space.getPlayer() == null) {
+            p.setSpace(space);
+        }
+
+        board.getNextPlayer();
+
+
     }
 
     /**
@@ -62,7 +71,7 @@ public class GameController {
     public void notImplememted() {
         // XXX just for now to indicate that the actual method to be used by a handler
         //     is not yet implemented
-    };
+    }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
         CommandCard sourceCard = source.getCard();
