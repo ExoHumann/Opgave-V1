@@ -65,37 +65,19 @@ public class GameController {
 
     public void turnRitght(Player p){
         Heading h = p.getHeading();
-        switch (h){
-            case NORTH: p.setHeading(Heading.EAST);
-                break;
-            case SOUTH: p.setHeading(Heading.WEST);
-                break;
-            case EAST:  p.setHeading(Heading.SOUTH);
-                break;
-            case WEST:  p.setHeading(Heading.NORTH);
-                break;
-        }
+        p.setHeading(h.next());
     }
 
-//    public void moveCard(Player p, int moveAmount){
-//        Heading h = p.getHeading();
-//        Space s = p.getSpace();
-//        switch (h) {
-//            case NORTH:
-//                Space a = new Space(this.board, s.x+moveAmount, s.y);
-//                p.setSpace(a);
-//                break;
-//            case SOUTH:
-//                p.setHeading(Heading.WEST);
-//                break;
-//            case EAST:
-//                p.setHeading(Heading.SOUTH);
-//                break;
-//            case WEST:
-//                p.setHeading(Heading.NORTH);
-//                break;
-//        }
-//    }
+    public void turnLeft(Player p){
+        Heading h = p.getHeading();
+        p.setHeading(h.prev());
+    }
+
+    public void uTurn(Player p){
+        Heading h = p.getHeading();
+        p.setHeading(h.next());
+        p.setHeading(h.next());
+    }
 
 
     /**
