@@ -6,7 +6,7 @@
 
     <groupId>dk.dtu.compute.se.pisd</groupId>
     <artifactId>roborally</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <description>
         RoboRally demo with database access and loading
         some game boards from a files for the course
@@ -31,12 +31,6 @@
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.2</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -73,12 +67,13 @@
     </dependencies>
 
     <build>
+        <!-- we use default maven directory structure as indicated below
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>${basedir}/src/resources</directory>
             </resource>
-        </resources>
+        </resources> -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

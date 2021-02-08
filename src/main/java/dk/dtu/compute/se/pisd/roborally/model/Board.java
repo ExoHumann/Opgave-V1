@@ -117,10 +117,6 @@ public class Board extends Subject {
         }
     }
 
-public List <Player> getPlayers(){
-        return players;
-}
-
     public Player getCurrentPlayer() {
         return current;
     }
@@ -130,13 +126,6 @@ public List <Player> getPlayers(){
             this.current = player;
             notifyChange();
         }
-    }
-
-    public void getNextPlayer() {
-        int number = getPlayerNumber(current);
-        Player next = getPlayer((number + 1) % getPlayersNumber());
-        setCurrentPlayer(next);
-        setStep(getStep() +1);
     }
 
     public Phase getPhase() {
@@ -190,25 +179,17 @@ public List <Player> getPlayers(){
      * @param heading the heading of the neighbour
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
-    public Space getNeighbour(@NotNull Space space, @NotNull Heading heading, int a) {
+    public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
         int x = space.x;
         int y = space.y;
         switch (heading) {
-            case SOUTH -> y = (y + a) % height;
-            case WEST -> x = (x + width - a) % width;
-            case NORTH -> y = (y + height - a) % height;
-            case EAST -> x = (x + a) % width;
+            case SOUTH -> y = (y + 1) % height;
+            case WEST -> x = (x + width - 1) % width;
+            case NORTH -> y = (y + height - 1) % height;
+            case EAST -> x = (x + 1) % width;
         }
-        return getSpace(x, y);
-    }
 
-    public String toHearth(int count){
-        String hearth = "<3";
-        String result = "";
-        for (int i = 0; i < count; i++) {
-            result = result + hearth;
-        }
-        return result;
+        return getSpace(x, y);
     }
 
     public String getStatusMessage() {
@@ -219,8 +200,8 @@ public List <Player> getPlayers(){
         // XXX: V2 changed the status so that it shows the phase, the player and the step
         return "Phase: " + getPhase().name() +
                 ", Player = " + getCurrentPlayer().getName() +
-                ", Step: " + getStep() +
-                ", Lives " + toHearth(getCurrentPlayer().getLives()) +
-                ", Energy Cubes " + getCurrentPlayer().getEnergy_cubes();
+                ", Step: " + getStep();
     }
+
+
 }
