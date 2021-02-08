@@ -36,31 +36,15 @@ public enum Command {
     // This is a very simplistic way of realizing different commands.
 
     FORWARD("Fwd"),
+    RIGHT("Turn Right"),
+    LEFT("Turn Left"),
     FAST_FORWARD("Fast Fwd"),
-    MOVE1("MOVE 1"),
-    MOVE2("MOVE 2"),
-    MOVE3("MOVE 3"),
-    POWER_UP("POWER UP"),
-    RIGHT("RIGHT TURN"),
-    LEFT("LEFT TURN"),
-    U_TURN("U-TURN"),
-    OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT);
+    U_TURN("Uturn");
 
     final public String displayName;
 
-    final private List<Command> options;
-
-    Command(String displayName, Command... options) {
+    Command(String displayName) {
         this.displayName = displayName;
-        this.options = Collections.unmodifiableList(Arrays.asList(options));
-    }
-
-    public boolean isInteractive() {
-        return !options.isEmpty();
-    }
-
-    public List<Command> getOptions() {
-        return options;
     }
 
 }

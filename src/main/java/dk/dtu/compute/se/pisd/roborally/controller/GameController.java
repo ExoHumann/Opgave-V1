@@ -53,6 +53,14 @@ public class GameController {
         //   - the counter of moves in the game should be increased by one
         //     if the player is moved
 
+        Player p = board.getCurrentPlayer();
+
+        turnRight(p);
+        if (space.getPlayer() == null) {
+            p.setSpace(space);
+            board.getNextPlayer();
+        }
+
     }
 
     // XXX: V2
@@ -189,6 +197,9 @@ public class GameController {
                 case FAST_FORWARD:
                     this.fastForward(player);
                     break;
+                case U_TURN:
+                    this.uTurn(player);
+                    break;
                 default:
                     // DO NOTHING (for now)
             }
@@ -197,6 +208,7 @@ public class GameController {
 
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
+        Space s = player.getSpace();
 
     }
 
@@ -207,12 +219,21 @@ public class GameController {
 
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
-
+        Heading h = player.getHeading();
+        player.setHeading(h.next());
     }
 
     // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
+        Heading h = player.getHeading();
+        player.setHeading(h.prev());
+    }
 
+    // TODO Assignment V2
+    public void uTurn(@NotNull Player player){
+        Heading h = player.getHeading();
+        player.setHeading(h.next());
+        player.setHeading(h.next());
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {

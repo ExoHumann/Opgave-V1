@@ -128,6 +128,13 @@ public class Board extends Subject {
         }
     }
 
+    public void getNextPlayer() {
+        int number = getPlayerNumber(current);
+        Player next = getPlayer((number + 1) % getPlayersNumber());
+        setCurrentPlayer(next);
+        setStep(getStep() +1);
+    }
+
     public Phase getPhase() {
         return phase;
     }
@@ -202,6 +209,4 @@ public class Board extends Subject {
                 ", Player = " + getCurrentPlayer().getName() +
                 ", Step: " + getStep();
     }
-
-
 }
