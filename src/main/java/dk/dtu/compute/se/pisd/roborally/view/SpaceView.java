@@ -27,11 +27,8 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
+ *
  */
 public class SpaceView extends StackPane implements ViewObserver {
 
@@ -61,22 +59,11 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-
-        this.setStyle("-fx-background-color: grey;"+"-fx-border-color: yellow");
-
-        if (space.x == 1 && space.y == 1) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+        if ((space.x + space.y) % 2 == 0) {
+            this.setStyle("-fx-background-color: white;");
+        } else {
+            this.setStyle("-fx-background-color: black;");
         }
-        if (space.x == 1 && space.y == 6) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
-        }
-        if (space.x == 6 && space.y == 1) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
-        }
-        if (space.x == 6 && space.y == 6) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
-        }
-
 
         // updatePlayer();
 
@@ -90,21 +77,17 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         Player player = space.getPlayer();
         if (player != null) {
-            Circle circle = new Circle(40, 0, 15);
             Polygon arrow = new Polygon(0.0, 0.0,
-                    20.0, 40.0,
-                    40.0, 0.0);
+                    10.0, 20.0,
+                    20.0, 0.0 );
             try {
                 arrow.setFill(Color.valueOf(player.getColor()));
-                circle.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {
                 arrow.setFill(Color.MEDIUMPURPLE);
-                circle.setFill(Color.MEDIUMPURPLE);
             }
 
-            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
+            arrow.setRotate((90*player.getHeading().ordinal())%360);
             this.getChildren().add(arrow);
-            this.getChildren().add(circle);
         }
     }
 

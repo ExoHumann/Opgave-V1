@@ -90,15 +90,14 @@ public class PlayerView extends Tab implements ViewObserver {
         //      players, but on the PlayersView (view for all players). This should be
         //      refactored.
 
-        // XXX the respective GameController operations are not yet implemented
         finishButton = new Button("Finish Programming");
-        finishButton.setOnAction( e -> gameController.notImplememted());
+        finishButton.setOnAction( e -> gameController.notImplemented());
 
         executeButton = new Button("Execute Program");
-        executeButton.setOnAction( e-> gameController.notImplememted());
+        executeButton.setOnAction( e-> gameController.notImplemented());
 
         stepButton = new Button("Execute Current Register");
-        stepButton.setOnAction( e-> gameController.notImplememted());
+        stepButton.setOnAction( e-> gameController.notImplemented());
 
         buttonPanel = new VBox(finishButton, executeButton, stepButton);
         buttonPanel.setAlignment(Pos.CENTER_LEFT);
@@ -164,31 +163,29 @@ public class PlayerView extends Tab implements ViewObserver {
                     programPane.getChildren().remove(playerInteractionPanel);
                     programPane.add(buttonPanel, Player.NO_REGISTERS, 0);
                 }
+                // XXX just to make sure that there is a way for the player to get
+                //     from the initialization phase to the programming phase somehow!
                 switch (player.board.getPhase()) {
-                    case INITIALISATION:
+                    case INITIALISATION -> {
                         finishButton.setDisable(true);
-                        // XXX just to make sure that there is a way for the player to get
-                        //     from the initialization phase to the programming phase somehow!
                         executeButton.setDisable(false);
                         stepButton.setDisable(true);
-                        break;
-
-                    case PROGRAMMING:
+                    }
+                    case PROGRAMMING -> {
                         finishButton.setDisable(false);
                         executeButton.setDisable(true);
                         stepButton.setDisable(true);
-                        break;
-
-                    case ACTIVATION:
+                    }
+                    case ACTIVATION -> {
                         finishButton.setDisable(true);
                         executeButton.setDisable(false);
                         stepButton.setDisable(false);
-                        break;
-
-                    default:
+                    }
+                    default -> {
                         finishButton.setDisable(true);
                         executeButton.setDisable(true);
                         stepButton.setDisable(true);
+                    }
                 }
 
 
@@ -205,12 +202,12 @@ public class PlayerView extends Tab implements ViewObserver {
                     //      the player's choices of the interactive command card. The
                     //      following is just a mockup showing two options
                     Button optionButton = new Button("Option1");
-                    optionButton.setOnAction( e -> gameController.notImplememted());
+                    optionButton.setOnAction( e -> gameController.notImplemented());
                     optionButton.setDisable(false);
                     playerInteractionPanel.getChildren().add(optionButton);
 
                     optionButton = new Button("Option 2");
-                    optionButton.setOnAction( e -> gameController.notImplememted());
+                    optionButton.setOnAction( e -> gameController.notImplemented());
                     optionButton.setDisable(false);
                     playerInteractionPanel.getChildren().add(optionButton);
                 }
