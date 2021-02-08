@@ -55,7 +55,6 @@ public class GameController {
 
         Player p = board.getCurrentPlayer();
 
-        turnRight(p);
         if (space.getPlayer() == null) {
             p.setSpace(space);
             board.getNextPlayer();
@@ -208,13 +207,20 @@ public class GameController {
 
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
-        Space s = player.getSpace();
-
+        Space source = player.getSpace();
+        if (source != null && player.board == source.board){
+            Space target = board.getNeighbour(source, player.getHeading());
+            if (target != null && target.getPlayer() == null){
+                player.setSpace(target);
+            }
+        }
     }
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
-
+        moveForward(player);
+        moveForward(player);
+        moveForward(player);
     }
 
     // TODO Assignment V2
@@ -233,6 +239,7 @@ public class GameController {
     public void uTurn(@NotNull Player player){
         Heading h = player.getHeading();
         player.setHeading(h.next());
+        h = player.getHeading();
         player.setHeading(h.next());
     }
 
