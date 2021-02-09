@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class GameController {
 
@@ -44,7 +43,7 @@ public class GameController {
      *
      * @param space the space to which the current player should move
      */
-    public void moveCurrentPlayerToSpace(@NotNull Space space)  {
+    public void moveCurrentPlayerToSpace(@NotNull Space space) {
         // TODO Assignment V1: method should be implemented by the students:
         //   - the current player should be moved to the given space
         //     (if it is free()
@@ -184,17 +183,25 @@ public class GameController {
             //     (this concerns the way cards are modelled as well as the way they are executed).
 
             switch (command) {
+
                 case FORWARD:
+                case MOVE1:
                     this.moveForward(player);
+                    break;
+                case FAST_FORWARD:
+                case MOVE2:
+                    this.fastForward(player,2);
+                    break;
+                case MOVE3:
+                    this.fastForward(player, 3);
+                    break;
+                case POWER_UP:
                     break;
                 case RIGHT:
                     this.turnRight(player);
                     break;
                 case LEFT:
                     this.turnLeft(player);
-                    break;
-                case FAST_FORWARD:
-                    this.fastForward(player);
                     break;
                 case U_TURN:
                     this.uTurn(player);
@@ -208,19 +215,23 @@ public class GameController {
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
         Space source = player.getSpace();
-        if (source != null && player.board == source.board){
-            Space target = board.getNeighbour(source, player.getHeading());
-            if (target != null && target.getPlayer() == null){
+        if (source != null && player.board == source.board) {
+            Space target = board.getNeighbour(source, player.getHeading(),1);
+            if (target != null && target.getPlayer() == null) {
                 player.setSpace(target);
             }
         }
     }
 
     // TODO Assignment V2
-    public void fastForward(@NotNull Player player) {
-        moveForward(player);
-        moveForward(player);
-        moveForward(player);
+    public void fastForward(@NotNull Player player, int moveAmount) {
+        Space source = player.getSpace();
+        if (source != null && player.board == source.board) {
+            Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
+            if (target != null && target.getPlayer() == null) {
+                player.setSpace(target);
+            }
+        }
     }
 
     // TODO Assignment V2
@@ -236,11 +247,9 @@ public class GameController {
     }
 
     // TODO Assignment V2
-    public void uTurn(@NotNull Player player){
-        Heading h = player.getHeading();
-        player.setHeading(h.next());
-        h = player.getHeading();
-        player.setHeading(h.next());
+    public void uTurn(@NotNull Player player) {
+        turnRight(player);
+        turnRight(player);
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
