@@ -42,6 +42,7 @@ public class Player extends Subject {
     private String name;
     private String color;
     private int lives;
+    private int energy_cubes;
 
     private Space space;
     private Heading heading = SOUTH;
@@ -54,6 +55,7 @@ public class Player extends Subject {
         this.name = name;
         this.color = color;
         this.lives = 3;
+        this.energy_cubes = 5;
         this.space = null;
 
         program = new CommandCardField[NO_REGISTERS];
@@ -141,6 +143,17 @@ public class Player extends Subject {
     public void setLives(int lives) {
         if (lives != this.lives) {
             this.lives = lives;
+            notifyChange();
+        }
+    }
+
+    public int getEnergy_cubes() {
+        return energy_cubes;
+    }
+
+    public void setEnergy_cubes(int energy_cubes) {
+        if (energy_cubes != this.energy_cubes) {
+            this.energy_cubes = energy_cubes;
             notifyChange();
         }
     }

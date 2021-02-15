@@ -201,7 +201,7 @@ public class Board extends Subject {
     public String toHearth(int count){
         String hearth = "<3";
         String result = "";
-        for (int i = 1; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             result = result + hearth;
         }
         return result;
@@ -216,6 +216,7 @@ public class Board extends Subject {
         return "Phase: " + getPhase().name() +
                 ", Player = " + getCurrentPlayer().getName() +
                 ", Step: " + getStep() +
-                ", Lives " + toHearth(getCurrentPlayer().getLives());
+                ", Lives " + toHearth(getCurrentPlayer().getLives()) +
+                ", Energy Cubes " + getCurrentPlayer().getEnergy_cubes();
     }
 }
