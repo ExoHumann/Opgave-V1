@@ -198,6 +198,15 @@ public class Board extends Subject {
         return getSpace(x, y);
     }
 
+    public String toHearth(int count){
+        String hearth = "<3";
+        String result = "";
+        for (int i = 1; i < count; i++) {
+            result = result + hearth;
+        }
+        return result;
+    }
+
     public String getStatusMessage() {
         // this is actually a view aspect, but for making assignment V1 easy for
         // the students, this method gives a string representation of the current
@@ -206,6 +215,7 @@ public class Board extends Subject {
         // XXX: V2 changed the status so that it shows the phase, the player and the step
         return "Phase: " + getPhase().name() +
                 ", Player = " + getCurrentPlayer().getName() +
-                ", Step: " + getStep();
+                ", Step: " + getStep() +
+                ", Lives " + toHearth(getCurrentPlayer().getLives());
     }
 }

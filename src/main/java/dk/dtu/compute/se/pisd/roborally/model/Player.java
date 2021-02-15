@@ -41,6 +41,7 @@ public class Player extends Subject {
 
     private String name;
     private String color;
+    private int lives;
 
     private Space space;
     private Heading heading = SOUTH;
@@ -52,7 +53,7 @@ public class Player extends Subject {
         this.board = board;
         this.name = name;
         this.color = color;
-
+        this.lives = 3;
         this.space = null;
 
         program = new CommandCardField[NO_REGISTERS];
@@ -133,4 +134,14 @@ public class Player extends Subject {
         return cards[i];
     }
 
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        if (lives != this.lives) {
+            this.lives = lives;
+            notifyChange();
+        }
+    }
 }
