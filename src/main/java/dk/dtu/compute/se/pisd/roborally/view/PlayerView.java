@@ -32,6 +32,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * ...
  *
@@ -166,6 +171,7 @@ public class PlayerView extends Tab implements ViewObserver {
                 // XXX just to make sure that there is a way for the player to get
                 //     from the initialization phase to the programming phase somehow!
                 switch (player.board.getPhase()) {
+
                     case INITIALISATION -> {
                         finishButton.setDisable(true);
                         executeButton.setDisable(false);
@@ -201,15 +207,23 @@ public class PlayerView extends Tab implements ViewObserver {
                     //      an interactive command card, and the buttons should represent
                     //      the player's choices of the interactive command card. The
                     //      following is just a mockup showing two options
-                    Button optionButton = new Button("Option1");
-                    optionButton.setOnAction( e -> gameController.notImplemented());
-                    optionButton.setDisable(false);
-                    playerInteractionPanel.getChildren().add(optionButton);
 
-                    optionButton = new Button("Option 2");
-                    optionButton.setOnAction( e -> gameController.notImplemented());
-                    optionButton.setDisable(false);
-                    playerInteractionPanel.getChildren().add(optionButton);
+                    CommandCard card = player.getProgramField(player.board.getStep()).getCard();
+                    Command command = card.command;
+                    List<Command> options = command.getOptions();
+
+                    if (options != null && Phase.PLAYER_INTERACTION == player.board.getPhase()) {
+
+                        Button optionButton;
+                        for (Command option : options) {
+
+                            optionButton = new Button(option.displayName);
+                            optionButton.setOnAction(e -> gameController.executeCommandOptionAndContinue(option));
+                            optionButton.setDisable(false);
+                            playerInteractionPanel.getChildren().add(optionButton);
+
+                        }
+                    }
                 }
             }
         }
