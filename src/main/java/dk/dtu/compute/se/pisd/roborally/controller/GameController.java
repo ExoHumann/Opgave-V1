@@ -87,7 +87,7 @@ public class GameController {
     // XXX: V2
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
-        int random = (int) (Math.random() * commands.length);
+    int random = (int) (Math.random() * commands.length);
         return new CommandCard(commands[random]);
     }
 
@@ -257,10 +257,12 @@ public class GameController {
         if (source != null && player.board == source.board) {
             Space target = board.getNeighbour(source, player.getHeading(), 1);
             if (target != null && target.getPlayer() == null) {
-                player.setSpace(target);
-            }
-        }
-    }
+                player.setSpace(target); }
+   //         else if (target!=null && target.getPlayer() !=null) {
+    ////            }
+            }        }
+
+
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player, int moveAmount) {
@@ -302,6 +304,20 @@ public class GameController {
             return false;
         }
     }
+
+    private void moveToSpace(
+            @NotNull Player player,
+            @NotNull Space space,
+            @NotNull Heading heading) {
+        Player other=space.getPlayer();
+        if (other!=null){
+            Space target= board.getNeighbour(space,heading,1);
+            if(target!=null) {
+    moveToSpace(other,target,heading);
+            }
+        } player.setSpace(space);
+    }
+
 
     /**
      * A method called when no corresponding controller operation is implemented yet. This
