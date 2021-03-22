@@ -167,7 +167,7 @@ class Repository implements IRepository {
 			rs.close();
 
 			updatePlayersInDB(game);
-			/** TOODO this method needs to be implemented first
+			/* TOODO this method needs to be implemented first
 			updateCardFieldsInDB(game);
 			*/
 
