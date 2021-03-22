@@ -22,12 +22,14 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
+import java.util.Collection;
 
 /**
  * ...
@@ -85,4 +87,11 @@ public class Space extends Subject {
         notifyChange();
     }
 
+    public Collection<FieldAction> getActions() {
+        return null;
+    }
+
+    public Collection<Heading> getWalls() {
+        return null;
+    }
 }
