@@ -75,4 +75,5 @@ public abstract class Subject {
 			observer.update(this);
 		}
 	}
+
 }

@@ -252,6 +252,11 @@ public class GameController {
     }
 
     // TODO Assignment V2
+
+    /**
+     *
+     * @param player
+     */
     public void moveForward(@NotNull Player player) {
         Space source = player.getSpace();
         if (source != null && player.board == source.board) {
@@ -305,8 +310,16 @@ public class GameController {
             return false;
         }
     }
+   // ConveyorPush();{
+  //     moveToSpace(board.getCurrentPlayer(),); }
 
-    private void moveToSpace(
+    /**
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @param player
+     * @param space
+     * @param heading
+     */
+    public void moveToSpace(
             @NotNull Player player,
             @NotNull Space space,
             @NotNull Heading heading) {

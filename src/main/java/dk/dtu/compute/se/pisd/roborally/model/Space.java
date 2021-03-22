@@ -22,11 +22,12 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.*;
 
 /**
  * ...
@@ -36,15 +37,12 @@ import java.util.List;
  */
 public class Space extends Subject {
 
-    private Player player;
-
-    private List<Heading> walls = new ArrayList<>();
-    private List<FieldAction> actions = new ArrayList<>();
-
     public final Board board;
 
     public final int x;
     public final int y;
+
+    private Player player;
 
     public Space(Board board, int x, int y) {
         this.board = board;
@@ -55,29 +53,9 @@ public class Space extends Subject {
 
 
 
-    public ConveyorBelt getConveyorBelt() {
-
-        ConveyorBelt belt = null;
-
-        for (FieldAction action : this.actions) {
-            if (action instanceof ConveyorBelt && belt == null) {
-                belt = (ConveyorBelt) action;
-            }
-        }
-
-        return belt;
-
-    }
-
-
-
-
     public Player getPlayer() {
         return player;
     }
-
-
-
 
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;
@@ -97,8 +75,8 @@ public class Space extends Subject {
 
 
 
-    public List<Heading> getWalls() { return walls; }
-    public List<FieldAction> getActions() { return actions; }
+
+
 
     void playerChanged() {
         // This is a minor hack; since some views that are registered with the space
