@@ -87,7 +87,7 @@ public class GameController {
     // XXX: V2
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
-        int random = (int) (Math.random() * commands.length);
+    int random = (int) (Math.random() * commands.length);
         return new CommandCard(commands[random]);
     }
 
@@ -252,15 +252,23 @@ public class GameController {
     }
 
     // TODO Assignment V2
+
+    /**
+     *
+     * @param player
+     */
     public void moveForward(@NotNull Player player) {
         Space source = player.getSpace();
         if (source != null && player.board == source.board) {
             Space target = board.getNeighbour(source, player.getHeading(), 1);
             if (target != null && target.getPlayer() == null) {
-                player.setSpace(target);
-            }
-        }
-    }
+                player.setSpace(target); }
+            else if (target!=null && target.getPlayer() !=null) {
+                moveToSpace(player, target, player.getHeading());
+                }
+            }        }
+
+
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player, int moveAmount) {
@@ -302,6 +310,28 @@ public class GameController {
             return false;
         }
     }
+   // ConveyorPush();{
+  //     moveToSpace(board.getCurrentPlayer(),); }
+
+    /**
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @param player
+     * @param space
+     * @param heading
+     */
+    public void moveToSpace(
+            @NotNull Player player,
+            @NotNull Space space,
+            @NotNull Heading heading) {
+        Player other=space.getPlayer();
+        if (other!=null){
+            Space target= board.getNeighbour(space,heading,1);
+            if(target!=null) {
+    moveToSpace(other,target,heading);
+            }
+        } player.setSpace(space);
+    }
+
 
 //    public void moveForward(@NotNull Player player) {
 //        if (player.board == board) {
