@@ -22,6 +22,12 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+
+import java.awt.*;
 
 /**
  * ...
@@ -45,6 +51,8 @@ public class Space extends Subject {
         player = null;
     }
 
+
+
     public Player getPlayer() {
         return player;
     }
@@ -64,6 +72,11 @@ public class Space extends Subject {
             notifyChange();
         }
     }
+
+
+
+
+
 
     void playerChanged() {
         // This is a minor hack; since some views that are registered with the space

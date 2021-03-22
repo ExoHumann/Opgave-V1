@@ -74,10 +74,11 @@ public class BoardView extends VBox implements ViewObserver {
                 SpaceView spaceView = new SpaceView(space);
                 spaces[x][y] = spaceView;
                 mainBoardPane.add(spaceView, x, y);
+                spaceView.setWall();
                 spaceView.setOnMouseClicked(spaceEventHandler);
             }
         }
-
+board.getSpace(1,2).
         board.attach(this);
         update(board);
     }

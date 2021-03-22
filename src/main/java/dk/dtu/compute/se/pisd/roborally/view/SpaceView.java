@@ -22,16 +22,12 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.*;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -67,7 +63,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
         }
         if (space.x == 1 && space.y == 6) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+            setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
         }
         if (space.x == 6 && space.y == 1) {
             this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
@@ -113,5 +109,24 @@ public class SpaceView extends StackPane implements ViewObserver {
             updatePlayer();
         }
     }
+
+    /**
+     * @author Ekkart Kindler, ekki@dtu.dk
+     */
+    public void setWall(){
+    Pane pane=new Pane();
+Rectangle rectangle=new Rectangle(0.0,0.0,SPACE_WIDTH,SPACE_HEIGHT);
+rectangle.setFill(Color.TRANSPARENT);
+pane.getChildren().add(rectangle);
+
+Line line=new Line(2,SPACE_HEIGHT-2,SPACE_WIDTH-2,SPACE_HEIGHT-2);
+line.setStroke(Color.RED);
+line.setStrokeWidth(5);
+pane.getChildren().add(line);
+this.getChildren().add(pane);
+    }
+
+
+
 
 }
