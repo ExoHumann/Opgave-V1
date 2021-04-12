@@ -9,7 +9,7 @@ public class RightTurn extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         gameController.turnRight(space.getPlayer());
-        return false;
+        return true;
     }
 }
 
