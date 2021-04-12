@@ -64,34 +64,33 @@ public class LoadBoard {
 		Board result;
 		// FileReader fileReader = null;
         JsonReader reader = null;
-		try {
+		//try {
 			// fileReader = new FileReader(filename);
-			reader = gson.newJsonReader(new InputStreamReader(inputStream));
-			BoardTemplate template = gson.fromJson(reader, BoardTemplate.class);
+		//	reader = gson.newJsonReader(new InputStreamReader(inputStream));
+		//	BoardTemplate template = gson.fromJson(reader, BoardTemplate.class);
 
-			result = new Board(template.width, template.height);
-			for (SpaceTemplate spaceTemplate: template.spaces) {
-			    Space space = result.getSpace(spaceTemplate.x, spaceTemplate.y);
-			    if (space != null) {
-                    space.getActions().addAll(spaceTemplate.actions);
-                    space.getWalls().addAll(spaceTemplate.walls);
-                }
-            }
-			reader.close();
-			return result;
-		} catch (IOException e1) {
-            if (reader != null) {
-                try {
-                    reader.close();
-                    inputStream = null;
-                } catch (IOException e2) {}
-            }
-            if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e2) {}
-			}
-		}
+		//	result = new Board(template.width, template.height);
+		//	for (SpaceTemplate spaceTemplate: template.spaces) {
+		//	    Space space = result.getSpace(spaceTemplate.x, spaceTemplate.y);
+		//	    if (space != null) {
+          //        space.getWalls().addAll(spaceTemplate.walls);
+        //       }
+        //    }
+		//	reader.close();
+		//	return result;
+		//} catch (IOException e1) {
+       //     if (reader != null) {
+       //         try {
+         //           reader.close();
+         //           inputStream = null;
+         //       } catch (IOException e2) {}
+         //   }
+         //   if (inputStream != null) {
+		//		try {
+		//			inputStream.close();
+		//		} catch (IOException e2) {}
+		//	}
+		//}
 		return null;
     }
 
@@ -100,19 +99,19 @@ public class LoadBoard {
         template.width = board.width;
         template.height = board.height;
 
-        for (int i=0; i<board.width; i++) {
-            for (int j=0; j<board.height; j++) {
-                Space space = board.getSpace(i,j);
-                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()) {
-                    SpaceTemplate spaceTemplate = new SpaceTemplate();
-                    spaceTemplate.x = space.x;
-                    spaceTemplate.y = space.y;
-                    spaceTemplate.actions.addAll(space.getActions());
-                    spaceTemplate.walls.addAll(space.getWalls());
-                    template.spaces.add(spaceTemplate);
-                }
-            }
-        }
+       // for (int i=0; i<board.width; i++) {
+       //     for (int j=0; j<board.height; j++) {
+         //       Space space = board.getSpace(i,j);
+               // if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()) {
+          //          SpaceTemplate spaceTemplate = new SpaceTemplate();
+          //          spaceTemplate.x = space.x;
+          //          spaceTemplate.y = space.y;
+          //          spaceTemplate.actions.addAll(space.getActions());
+          //          spaceTemplate.walls.addAll(space.getWalls());
+           ///         template.spaces.add(spaceTemplate);
+           //     }
+          //  }
+      //  }
 
         ClassLoader classLoader = LoadBoard.class.getClassLoader();
         // TODO: this is not very defensive, and will result in a NullPointerException
