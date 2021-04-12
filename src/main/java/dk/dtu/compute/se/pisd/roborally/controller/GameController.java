@@ -20,7 +20,7 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
-
+import dk.dtu.compute.se.pisd.roborally.controller.BoardElements.*;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -257,17 +257,20 @@ public class GameController {
      *
      * @param player
      */
+
+    /*
     public void moveForward(@NotNull Player player) {
         Space source = player.getSpace();
+        Heading heading = player.getHeading();
         if (source != null && player.board == source.board) {
-            Space target = board.getNeighbour(source, player.getHeading(), 1);
+            Space target = board.getNeighbour(source, heading, 1);
             if (target != null && target.getPlayer() == null) {
                 player.setSpace(target); }
             else if (target!=null && target.getPlayer() !=null) {
-                moveToSpace(player, target, player.getHeading());
+                moveToSpace(player, target, heading);
                 }
             }        }
-
+*/
 
 
     // TODO Assignment V2
@@ -319,45 +322,11 @@ public class GameController {
      * @param space
      * @param heading
      */
-    public void moveToSpace(
-            @NotNull Player player,
-            @NotNull Space space,
-            @NotNull Heading heading) {
-        Player other=space.getPlayer();
-        if (other!=null){
-            Space target= board.getNeighbour(space,heading,1);
-            if(target!=null) {
-    moveToSpace(other,target,heading);
-            }
-        } player.setSpace(space);
-    }
-
-
-
-//    public void moveForward(@NotNull Player player) {
-//        if (player.board == board) {
-//            Space space = player.getSpace();
-//            Heading heading = player.getHeading();
-//
-//            Space target = board.getNeighbour(space, heading);
-//            if (target != null) {
-//                try {
-//                    moveToSpace(player, target, heading);
-//                } catch (ImpossibleMoveException e) {
-//                    // we don't do anything here  for now; we just catch the
-//                    // exception so that we do no pass it on to the caller
-//                    // (which would be very bad style).
-//                }
-//            }
-//        }
-//    }
-
-/*
     void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
-        assert board.getNeighbour(player.getSpace(), heading) == space; // make sure the move to here is possible in principle
+        assert board.getNeighbour(player.getSpace(), heading,1) == space; // make sure the move to here is possible in principle
         Player other = space.getPlayer();
         if (other != null){
-            Space target = board.getNeighbour(space, heading);
+            Space target = board.getNeighbour(space, heading,1);
             if (target != null) {
                 // XXX Note that there might be additional problems with
                 //     infinite recursion here (in some special cases)!
@@ -373,8 +342,62 @@ public class GameController {
             }
         }
         player.setSpace(space);
+        BoardActionFields(space);
+
     }
-    */
+
+ /*   public void moveToSpace(
+            @NotNull Player player,
+            @NotNull Space space,
+            @NotNull Heading heading) {
+        Player other=space.getPlayer();
+        if (other!=null){
+            Space target= board.getNeighbour(space,heading,1);
+            if(target!=null) {
+    moveToSpace(other,target,heading);
+            }
+        } player.setSpace(space);
+    }
+*/
+
+
+
+
+    public void moveForward(@NotNull Player player) {
+        if (player.board == board) {
+            Space space = player.getSpace();
+            Heading heading = player.getHeading();
+            Space target = board.getNeighbour(space, heading,1);
+            if (target != null) {
+                try {
+                    moveToSpace(player, target, heading);
+                } catch (ImpossibleMoveException e) {
+                    // we don't do anything here  for now; we just catch the
+                    // exception so that we do no pass it on to the caller
+                    // (which would be very bad style).
+                }
+            }
+        }
+    }
+    ConveyorBeltEast cbe;
+    ConveyorBeltNorth cbn;
+    ConveyorBeltSouth cbs;
+    ConveyorBeltWest cbw;
+    GameController gamecontroller;
+    public void BoardActionFields(Space space){
+
+
+        if (space.x==2 && space.y==1){
+            cbs.doAction(cbs.gamecontroller,board.getSpace(2,1));
+        }
+
+        if (space.x==3 && space.y==3){
+            cbe.doAction(gamecontroller,board.getSpace(3,3));
+        }
+
+    }
+
+
 
     class ImpossibleMoveException extends Exception {
 
