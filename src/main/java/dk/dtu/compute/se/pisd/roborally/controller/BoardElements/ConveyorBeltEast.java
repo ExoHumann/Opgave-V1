@@ -9,21 +9,20 @@ import org.jetbrains.annotations.NotNull;
 public class ConveyorBeltEast extends FieldAction {
     public GameController gamecontroller;
 
-    private Heading heading;
+    private Heading heading = Heading.EAST;
 
     public Heading getHeading() {
         return heading;
     }
 
-    public void setHeading(Heading heading) {
-        this.heading = heading;
-    }
+    //public void setHeading(Heading heading) { this.heading = heading;
+
 
     @Override
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
         // TODO needs to be implemented
-
-        gameController.moveForward(space.getPlayer(), heading);
+        space.getPlayer().setHeading(heading);
+        gameController.moveForward(space.getPlayer());
 
         return true;
     }

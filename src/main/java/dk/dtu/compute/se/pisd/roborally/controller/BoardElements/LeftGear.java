@@ -10,6 +10,6 @@ public class LeftGear extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         gameController.turnLeft(space.getPlayer());
-        return false;
+        return true;
     }
 }
