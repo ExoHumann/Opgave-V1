@@ -193,7 +193,7 @@ public class GameController {
 
                 case FORWARD:
                 case MOVE1:
-                    this.moveForward(player);
+                    this.moveForward(player, player.getHeading());
                     break;
                 case FAST_FORWARD:
                 case MOVE2:
@@ -363,10 +363,10 @@ public class GameController {
 
 
 
-    public void moveForward(@NotNull Player player) {
+    public void moveForward(@NotNull Player player, Heading heading) {
         if (player.board == board) {
             Space space = player.getSpace();
-            Heading heading = player.getHeading();
+          //heading = player.getHeading();
             Space target = board.getNeighbour(space, heading,1);
             if (target != null) {
                 try {
@@ -379,23 +379,29 @@ public class GameController {
             }
         }
     }
-    ConveyorBeltEast cbe;
-    ConveyorBeltNorth cbn;
-    ConveyorBeltSouth cbs;
-    ConveyorBeltWest cbw;
-    GameController gamecontroller;
+    ConveyorBeltEast cbe= new ConveyorBeltEast();
+    ConveyorBeltNorth cbn= new ConveyorBeltNorth();
+    ConveyorBeltSouth cbs= new ConveyorBeltSouth();
+    ConveyorBeltWest cbw= new ConveyorBeltWest();
+    GearLeftTurn glt=new GearLeftTurn();
+    GearRightTurn grt=new GearRightTurn();
+
+    Space space;
     public void BoardActionFields(Space space){
 
 
-        if (space.x==2 && space.y==1){
-            cbs.doAction(cbs.gamecontroller,board.getSpace(2,1));
+        if (space.x==1 && space.y==1){
+            cbs.doAction(GameController.this,space);
         }
 
         if (space.x==3 && space.y==3){
-            cbe.doAction(gamecontroller,board.getSpace(3,3));
-        }
+            cbe.doAction(cbe.gamecontroller, board.getSpace(3,3));
 
-    }
+        }
+        if (space.x==3 && space.y==6){cbe.doAction(GameController.this,board.getSpace(3,6)) ;}
+
+
+    if (space.x==5 && space.y==5) {glt.doAction(GameController.this,board.getSpace(5,5));}  }
 
 
 
