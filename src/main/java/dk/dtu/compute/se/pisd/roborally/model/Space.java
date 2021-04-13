@@ -28,6 +28,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * ...
@@ -49,6 +50,7 @@ public class Space extends Subject {
         this.x = x;
         this.y = y;
         player = null;
+
     }
 
 
