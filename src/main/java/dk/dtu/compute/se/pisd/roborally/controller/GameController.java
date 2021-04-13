@@ -280,8 +280,10 @@ public class GameController {
             Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
             if (target != null && target.getPlayer() == null) {
                 player.setSpace(target);
+                BoardActionFields(target);
             }
         }
+
     }
 
     // TODO Assignment V2
@@ -391,7 +393,7 @@ public class GameController {
 
 
         if (space.x==1 && space.y==1){
-            cbs.doAction(GameController.this,space);
+            cbs.doAction(GameController.this,board.getSpace(1,1));
         }
 
         if (space.x==3 && space.y==3){
