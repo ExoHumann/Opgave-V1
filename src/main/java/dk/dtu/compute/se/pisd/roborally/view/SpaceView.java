@@ -34,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class SpaceView extends StackPane implements ViewObserver {
 
@@ -57,19 +56,19 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMaxHeight(SPACE_HEIGHT);
 
 
-        this.setStyle("-fx-background-color: grey;"+"-fx-border-color: yellow");
+        this.setStyle("-fx-background-color: grey;" + "-fx-border-color: yellow");
 
         if (space.x == 1 && space.y == 1) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+            this.setStyle("-fx-background-color: black;" + "-fx-border-color: yellow");
         }
         if (space.x == 1 && space.y == 6) {
-            setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+            setStyle("-fx-background-color: black;" + "-fx-border-color: yellow");
         }
         if (space.x == 6 && space.y == 1) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+            this.setStyle("-fx-background-color: black;" + "-fx-border-color: yellow");
         }
         if (space.x == 6 && space.y == 6) {
-            this.setStyle("-fx-background-color: black;"+"-fx-border-color: yellow");
+            this.setStyle("-fx-background-color: black;" + "-fx-border-color: yellow");
         }
 
 
@@ -81,7 +80,6 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     private void updatePlayer() {
-        this.getChildren().clear();
 
         Player player = space.getPlayer();
         if (player != null) {
@@ -106,6 +104,8 @@ public class SpaceView extends StackPane implements ViewObserver {
     @Override
     public void updateView(Subject subject) {
         if (subject == this.space) {
+            this.getChildren().clear();
+
             updatePlayer();
         }
     }
@@ -113,20 +113,17 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * @author Ekkart Kindler, ekki@dtu.dk
      */
-    public void setWall(){
-    Pane pane=new Pane();
-Rectangle rectangle=new Rectangle(0.0,0.0,SPACE_WIDTH,SPACE_HEIGHT);
-rectangle.setFill(Color.TRANSPARENT);
-pane.getChildren().add(rectangle);
+    public void setWall() {
+        Pane pane = new Pane();
+        Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
+        rectangle.setFill(Color.TRANSPARENT);
+        pane.getChildren().add(rectangle);
 
-Line line=new Line(2,SPACE_HEIGHT-2,SPACE_WIDTH-2,SPACE_HEIGHT-2);
-line.setStroke(Color.RED);
-line.setStrokeWidth(5);
-pane.getChildren().add(line);
-this.getChildren().add(pane);
+        Line line = new Line(2, SPACE_HEIGHT - 2, SPACE_WIDTH - 2, SPACE_HEIGHT - 2);
+        line.setStroke(Color.RED);
+        line.setStrokeWidth(5);
+        pane.getChildren().add(line);
+        this.getChildren().add(pane);
     }
-
-
-
 
 }

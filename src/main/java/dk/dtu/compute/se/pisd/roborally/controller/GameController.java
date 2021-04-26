@@ -20,6 +20,7 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
+
 import dk.dtu.compute.se.pisd.roborally.controller.BoardElements.*;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import org.jetbrains.annotations.NotNull;
@@ -87,7 +88,7 @@ public class GameController {
     // XXX: V2
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
-    int random = (int) (Math.random() * commands.length);
+        int random = (int) (Math.random() * commands.length);
         return new CommandCard(commands[random]);
     }
 
@@ -164,6 +165,8 @@ public class GameController {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
                     step++;
+                    //TODO Her skal feltaktioner eksekveres
+                    boardActionFields(currentPlayer.getSpace());
                     if (step < Player.NO_REGISTERS) {
                         makeProgramFieldsVisible(step);
                         board.setStep(step);
@@ -240,6 +243,7 @@ public class GameController {
             } else {
 
                 step++;
+                boardActionFields(currentPlayer.getSpace());
                 if (step < Player.NO_REGISTERS) {
                     makeProgramFieldsVisible(step);
                     board.setStep(step);
@@ -254,7 +258,6 @@ public class GameController {
     // TODO Assignment V2
 
     /**
-     *
      * @param player
      */
 
@@ -280,7 +283,7 @@ public class GameController {
             Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
             if (target != null && target.getPlayer() == null) {
                 player.setSpace(target);
-                BoardActionFields(target);
+                boardActionFields(target);
             }
         }
 
@@ -315,20 +318,20 @@ public class GameController {
             return false;
         }
     }
-   // ConveyorPush();{
-  //     moveToSpace(board.getCurrentPlayer(),); }
+    // ConveyorPush();{
+    //     moveToSpace(board.getCurrentPlayer(),); }
 
     /**
-     * @author Ekkart Kindler, ekki@dtu.dk
      * @param player
      * @param space
      * @param heading
+     * @author Ekkart Kindler, ekki@dtu.dk
      */
     void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
-        assert board.getNeighbour(player.getSpace(), heading,1) == space; // make sure the move to here is possible in principle
+        assert board.getNeighbour(player.getSpace(), heading, 1) == space; // make sure the move to here is possible in principle
         Player other = space.getPlayer();
-        if (other != null){
-            Space target = board.getNeighbour(space, heading,1);
+        if (other != null) {
+            Space target = board.getNeighbour(space, heading, 1);
             if (target != null) {
                 // XXX Note that there might be additional problems with
                 //     infinite recursion here (in some special cases)!
@@ -344,7 +347,7 @@ public class GameController {
             }
         }
         player.setSpace(space);
-        BoardActionFields(space);
+        boardActionFields(space);
 
     }
 
@@ -363,13 +366,11 @@ public class GameController {
 */
 
 
-
-
     public void moveForward(@NotNull Player player, Heading heading) {
         if (player.board == board) {
             Space space = player.getSpace();
-          //heading = player.getHeading();
-            Space target = board.getNeighbour(space, heading,1);
+            //heading = player.getHeading();
+            Space target = board.getNeighbour(space, heading, 1);
             if (target != null) {
                 try {
                     moveToSpace(player, target, heading);
@@ -381,30 +382,16 @@ public class GameController {
             }
         }
     }
-    ConveyorBeltEast cbe= new ConveyorBeltEast();
-    ConveyorBeltNorth cbn= new ConveyorBeltNorth();
-    ConveyorBeltSouth cbs= new ConveyorBeltSouth();
-    ConveyorBeltWest cbw= new ConveyorBeltWest();
-    GearLeftTurn glt=new GearLeftTurn();
-    GearRightTurn grt=new GearRightTurn();
 
-    Space space;
-    public void BoardActionFields(Space space){
+    public void boardActionFields(Space space) {
 
+        for (FieldAction fa : space.getActions()) {
 
-        if (space.x==1 && space.y==1){
-            cbs.doAction(GameController.this,board.getSpace(1,1));
-        }
-
-        if (space.x==3 && space.y==3){
-            cbe.doAction(cbe.gamecontroller, board.getSpace(3,3));
+            fa.doAction(this, space);
 
         }
-        if (space.x==3 && space.y==6){cbe.doAction(GameController.this,board.getSpace(3,6)) ;}
 
-
-    if (space.x==5 && space.y==5) {glt.doAction(GameController.this,board.getSpace(5,5));}  }
-
+    }
 
 
     class ImpossibleMoveException extends Exception {

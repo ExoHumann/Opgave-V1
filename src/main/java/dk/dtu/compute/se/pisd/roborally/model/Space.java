@@ -22,13 +22,10 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ...
@@ -38,22 +35,22 @@ import java.awt.event.ActionEvent;
  */
 public class Space extends Subject {
 
+    private Player player;
+
+    private List<Heading> walls = new ArrayList<>();
+    private List<FieldAction> actions = new ArrayList<>();
+
     public final Board board;
 
     public final int x;
     public final int y;
-
-    private Player player;
 
     public Space(Board board, int x, int y) {
         this.board = board;
         this.x = x;
         this.y = y;
         player = null;
-
     }
-
-
 
     public Player getPlayer() {
         return player;
@@ -75,10 +72,8 @@ public class Space extends Subject {
         }
     }
 
-
-
-
-
+    public List<Heading> getWalls() { return walls; }
+    public List<FieldAction> getActions() { return actions; }
 
     void playerChanged() {
         // This is a minor hack; since some views that are registered with the space
