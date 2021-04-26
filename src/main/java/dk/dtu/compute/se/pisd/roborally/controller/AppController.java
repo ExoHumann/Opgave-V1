@@ -26,6 +26,7 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 
@@ -95,12 +96,13 @@ public class AppController implements Observer {
 
     public void saveGame() {
         // XXX needs to be implemented eventually
-
+        LoadBoard.saveBoard(this.gameController.board, gameController.board.boardName);
     }
 
     public void loadGame() {
         // XXX needs to be implememted eventually
         // for now, we just create a new game
+        LoadBoard.loadBoard(null);
         if (gameController == null) {
             newGame();
         }
