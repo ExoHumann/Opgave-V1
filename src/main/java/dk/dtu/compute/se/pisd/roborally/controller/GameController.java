@@ -164,9 +164,17 @@ public class GameController {
                 if (nextPlayerNumber < board.getPlayersNumber()) {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
+                    for (Player player : this.board.getPlayers()) {
+                        for (FieldAction action : player.getSpace().getActions()) {
+
+                            action.doAction(this, player.getSpace());
+                        }
+                    }
+
                     step++;
-                    //TODO Her skal feltaktioner eksekveres
-                    boardActionFields(currentPlayer.getSpace());
+
+
+
                     if (step < Player.NO_REGISTERS) {
                         makeProgramFieldsVisible(step);
                         board.setStep(step);
@@ -241,9 +249,9 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
 
             } else {
-
                 step++;
-                boardActionFields(currentPlayer.getSpace());
+
+
                 if (step < Player.NO_REGISTERS) {
                     makeProgramFieldsVisible(step);
                     board.setStep(step);
@@ -283,7 +291,7 @@ public class GameController {
             Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
             if (target != null && target.getPlayer() == null) {
                 player.setSpace(target);
-                boardActionFields(target);
+               // boardActionFields(target);
             }
         }
 
@@ -347,7 +355,7 @@ public class GameController {
             }
         }
         player.setSpace(space);
-        boardActionFields(space);
+        //boardActionFields(space);
 
     }
 
@@ -384,15 +392,19 @@ public class GameController {
     }
 
     public void boardActionFields(Space space) {
+        for (Player player :this.board.getPlayers()) {
+            for (FieldAction fa : space.getActions()) {
 
-        for (FieldAction fa : space.getActions()) {
+                fa.doAction(this, player.getSpace());
 
-            fa.doAction(this, space);
+
+            }
 
         }
-
+        if (space.x==0 && space.y==0){
+            space.getConveyorBelt();
+        }
     }
-
 
     class ImpossibleMoveException extends Exception {
 

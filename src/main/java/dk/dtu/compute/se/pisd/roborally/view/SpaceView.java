@@ -22,6 +22,9 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.layout.Pane;
@@ -55,7 +58,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-
+updateBelt();
         this.setStyle("-fx-background-color: grey;" + "-fx-border-color: yellow");
 
         if (space.x == 1 && space.y == 1) {
@@ -105,10 +108,28 @@ public class SpaceView extends StackPane implements ViewObserver {
     public void updateView(Subject subject) {
         if (subject == this.space) {
             this.getChildren().clear();
-
+            updateBelt();
+        }
             updatePlayer();
         }
-    }
+
+
+    private void updateBelt(){
+        ConveyorBelt belt = space.getConveyorBelt();
+        if (belt != null) {
+
+            Polygon fig = new Polygon(0.0, 0.0,
+                    60.0, 0.0,
+                    30.0, 60.0);
+
+            fig.setFill(Color.BLUE);
+
+            fig.setRotate((90*belt.getHeading().ordinal())%360);
+            this.getChildren().add(fig);
+        }
+
+   }
+
 
     /**
      * @author Ekkart Kindler, ekki@dtu.dk
