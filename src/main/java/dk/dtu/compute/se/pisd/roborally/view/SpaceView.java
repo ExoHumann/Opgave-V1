@@ -25,6 +25,7 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import dk.dtu.compute.se.pisd.roborally.controller.Gear;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.layout.Pane;
@@ -58,7 +59,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-updateBelt();
+        updateBelt();
         this.setStyle("-fx-background-color: grey;" + "-fx-border-color: yellow");
 
         if (space.x == 1 && space.y == 1) {
@@ -109,12 +110,13 @@ updateBelt();
         if (subject == this.space) {
             this.getChildren().clear();
             updateBelt();
+            updateGear();
         }
-            updatePlayer();
-        }
+        updatePlayer();
+    }
 
 
-    private void updateBelt(){
+    private void updateBelt() {
         ConveyorBelt belt = space.getConveyorBelt();
         if (belt != null) {
 
@@ -124,11 +126,25 @@ updateBelt();
 
             fig.setFill(Color.BLUE);
 
-            fig.setRotate((90*belt.getHeading().ordinal())%360);
+            fig.setRotate((90 * belt.getHeading().ordinal()) % 360);
             this.getChildren().add(fig);
         }
 
-   }
+    }
+
+    private void updateGear() {
+        Gear gear = space.getGear();
+        if (gear != null) {
+            Polygon fig = new Polygon(0.0, 0.0,
+                    60.0, 0.0,
+                    30.0, 60.0);
+
+            fig.setFill(Color.RED);
+
+            fig.setRotate((90 * gear.getHeading().ordinal()) % 360);
+            this.getChildren().add(fig);
+        }
+    }
 
 
     /**

@@ -303,6 +303,10 @@ public class GameController {
         player.setHeading(h.next());
     }
 
+    public void turn(@NotNull Player player, Heading h) {
+      player.setHeading(h);
+    }
+
     // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
         Heading h = player.getHeading();

@@ -201,6 +201,17 @@
       ],
       "x": 7,
       "y": 7
+    },
+    {"actions": [
+      {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
+        "INSTANCE": {
+          "heading": "NORTH"
+        }
+      }
+    ],
+      "x": 3,
+      "y": 2
     }
   ]
 }
