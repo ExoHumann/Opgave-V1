@@ -117,6 +117,10 @@ public class Board extends Subject {
         }
     }
 
+public List <Player> getPlayers(){
+        return players;
+}
+
     public Player getCurrentPlayer() {
         return current;
     }

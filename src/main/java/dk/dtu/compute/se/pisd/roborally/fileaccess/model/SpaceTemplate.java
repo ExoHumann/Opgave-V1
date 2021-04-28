@@ -41,6 +41,7 @@ public class SpaceTemplate {
     public List<FieldAction> actions = new ArrayList<>();
 
 
+
     public int x;
     public int y;
 
