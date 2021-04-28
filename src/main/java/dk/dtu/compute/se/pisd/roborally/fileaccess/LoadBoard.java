@@ -33,8 +33,6 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 
 import java.io.*;
 
-
-
 /**
  * ...
  *
@@ -51,8 +49,8 @@ public class LoadBoard {
             boardname = DEFAULTBOARD;
         }
 
-       // ClassLoader classLoader = LoadBoard.class.getClassLoader();
-        InputStream inputStream = LoadBoard.class.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
+        ClassLoader classLoader = LoadBoard.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
         if (inputStream == null) {
             // TODO these constants should be defined somewhere
             return new Board(8,8);
@@ -64,7 +62,7 @@ public class LoadBoard {
         Gson gson = simpleBuilder.create();
 
         Board result;
-        // FileReader fileReader = null;
+        //FileReader fileReader = null;
         JsonReader reader = null;
         try {
             // fileReader = new FileReader(filename);

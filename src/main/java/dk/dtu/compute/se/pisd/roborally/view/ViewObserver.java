@@ -35,6 +35,7 @@ public interface ViewObserver extends Observer {
 
     void updateView(Subject subject);
 
+
     @Override
     default void update(Subject subject) {
         // This default implementation of the update method makes sure that ViewObserver implementations
