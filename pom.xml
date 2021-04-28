@@ -27,11 +27,17 @@
              be included later in the course of the project are added
              already now, just to avoid missing these later. This applies
              for example to mysql, gson, guava, ...  -->
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>13.0</version>
         </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-controls</artifactId>
+                <version>15.0.1</version>
+            </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
