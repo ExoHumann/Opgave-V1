@@ -397,6 +397,22 @@ public class GameController {
             }
         }
     }
+    public void moveForwardFast(@NotNull Player player, Heading heading) {
+        if (player.board == board) {
+            Space space = player.getSpace();
+            //heading = player.getHeading();
+            Space target = board.getNeighbour(space, heading, 2);
+            if (target != null) {
+                try {
+                    moveToSpace(player, target, heading);
+                } catch (ImpossibleMoveException e) {
+                    // we don't do anything here  for now; we just catch the
+                    // exception so that we do no pass it on to the caller
+                    // (which would be very bad style).
+                }
+            }
+        }
+    }
 
     public void boardActionFields(Space space) {
         for (Player player :this.board.getPlayers()) {

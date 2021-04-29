@@ -222,6 +222,17 @@
     ],
       "x": 2,
       "y": 5
+    },
+    {"actions": [
+      {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt",
+        "INSTANCE": {
+          "heading": "WEST"
+        }
+      }
+    ],
+      "x": 2,
+      "y": 6
     }
   ]
 }

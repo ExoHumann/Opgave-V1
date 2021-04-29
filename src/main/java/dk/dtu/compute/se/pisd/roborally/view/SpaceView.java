@@ -95,6 +95,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().clear();
             updateHole();
             updateBelt();
+            updateFastConveyor();
             updateGear();
         }
         updatePlayer();
@@ -140,6 +141,21 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().add(fig);
         }
 
+    }
+
+    public void updateFastConveyor(){
+        FastConveyorBelt belt = space.getFastConveyor();
+        if (belt != null) {
+
+            Polygon fig = new Polygon(0.0, 0.0,
+                    60.0, 0.0,
+                    30.0, 60.0);
+
+            fig.setFill(Color.GREENYELLOW);
+
+            fig.setRotate((90 * belt.getHeading().ordinal()) % 360);
+            this.getChildren().add(fig);
+        }
     }
 
     /**
