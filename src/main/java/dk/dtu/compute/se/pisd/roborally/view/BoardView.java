@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class BoardView extends VBox implements ViewObserver {
 
@@ -77,8 +76,8 @@ public class BoardView extends VBox implements ViewObserver {
                 spaceView.setOnMouseClicked(spaceEventHandler);
             }
         }
-board.getSpace(1,2).
-        board.attach(this);
+        board.getSpace(1, 2).
+                board.attach(this);
         update(board);
     }
 

@@ -167,7 +167,10 @@ public class GameController {
                     for (Player player : this.board.getPlayers()) {
                         for (FieldAction action : player.getSpace().getActions()) {
 
+                            if (player.getSpace() != null){
                             action.doAction(this, player.getSpace());
+                            }
+
                         }
                     }
 
@@ -408,6 +411,14 @@ public class GameController {
         if (space.x==0 && space.y==0){
             space.getConveyorBelt();
         }
+    }
+
+    public void hole(Player player) {
+        Space startingSpace = new Space(board, 0,0);
+        if (player.getLives() == 0) {
+            player.setLives(player.getLives() - 1);
+            player.setSpace(startingSpace);
+        } else player.setSpace(null);
     }
 
     class ImpossibleMoveException extends Exception {

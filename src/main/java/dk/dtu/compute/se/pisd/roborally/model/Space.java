@@ -25,6 +25,7 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.controller.Gear;
+import dk.dtu.compute.se.pisd.roborally.controller.Hole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,18 @@ public class Space extends Subject {
             }
         }
         return gear;
+    }
+
+    public Hole getHole() {
+
+        Hole hole = null;
+
+        for (FieldAction action : this.actions){
+            if (action instanceof Hole && hole == null){
+                hole = (Hole) action;
+            }
+        }
+        return hole;
     }
 
     public Player getPlayer() {

@@ -89,6 +89,10 @@ public class Board extends Subject {
         }
     }
 
+    public Space StartingSpace(int x, int y){
+        return null;
+    }
+
     public Space getSpace(int x, int y) {
         if (x >= 0 && x < width &&
                 y >= 0 && y < height) {
@@ -204,11 +208,11 @@ public List <Player> getPlayers(){
 
     public String toHearth(int count){
         String hearth = "<3";
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            result = result + hearth;
+            result.append(hearth);
         }
-        return result;
+        return result.toString();
     }
 
     public String getStatusMessage() {

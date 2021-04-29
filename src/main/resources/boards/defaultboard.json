@@ -212,6 +212,16 @@
     ],
       "x": 3,
       "y": 2
+    },
+    {"actions": [
+      {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Hole",
+        "INSTANCE": {
+        }
+      }
+    ],
+      "x": 2,
+      "y": 5
     }
   ]
 }
