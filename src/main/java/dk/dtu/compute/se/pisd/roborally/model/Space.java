@@ -53,6 +53,8 @@ public class Space extends Subject {
         player = null;
     }
 
+
+
     public ConveyorBelt getConveyorBelt() {
 
         ConveyorBelt belt = null;
