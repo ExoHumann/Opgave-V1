@@ -340,6 +340,12 @@ public class GameController {
         Player other = space.getPlayer();
         if (other != null) {
             Space target = board.getNeighbour(space, heading, 1);
+
+            if (space.getWalls().contains(player.getHeading())){
+                throw new ImpossibleMoveException(player, space, heading);}
+            if (target.getWalls().contains(player.getHeading().facing())){
+                throw new ImpossibleMoveException(player, space, heading);}
+
             if (target != null) {
                 // XXX Note that there might be additional problems with
                 //     infinite recursion here (in some special cases)!
@@ -382,6 +388,7 @@ public class GameController {
             if (target != null) {
                 try {
                     moveToSpace(player, target, heading);
+
                 } catch (ImpossibleMoveException e) {
                     // we don't do anything here  for now; we just catch the
                     // exception so that we do no pass it on to the caller
