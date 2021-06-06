@@ -25,6 +25,7 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.layout.Pane;
@@ -110,10 +111,47 @@ updateBelt();
             this.getChildren().clear();
             updateBelt();
         }
+
             updatePlayer();
+        updateWalls();
         }
 
+private void updateWalls(){
+        Space space = this.space;
 
+       if (space.getWalls().isEmpty())
+
+         for (Heading wall : space.getWalls()) {
+
+             Pane pane = new Pane();
+             Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
+             rectangle.setFill(Color.TRANSPARENT);
+             pane.getChildren().add(rectangle);
+
+         switch (wall) {
+             case SOUTH:
+                 Line line = new Line(2, SPACE_HEIGHT - 2, SPACE_WIDTH - 2, SPACE_HEIGHT - 2);
+                 line.setStroke(Color.RED);
+                 line.setStrokeWidth(5);
+                 pane.getChildren().add(line);
+                 this.getChildren().add(pane);
+                 break;
+
+             case NORTH:
+                 switch (wall) {
+                     case SOUTH:
+                         Line line2 = new Line(2, 2, 2, 2);
+                         line2.setStroke(Color.RED);
+                         line2.setStrokeWidth(5);
+                         pane.getChildren().add(line2);
+                         this.getChildren().add(pane);
+                         break;
+
+
+       }
+   }
+}
+    }
     private void updateBelt(){
         ConveyorBelt belt = space.getConveyorBelt();
         if (belt != null) {
