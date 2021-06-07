@@ -206,12 +206,23 @@
       {
         "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
         "INSTANCE": {
-          "heading": "NORTH"
+          "direction": "RIGHT"
         }
       }
     ],
       "x": 3,
       "y": 2
+    },
+    {"actions": [
+      {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
+        "INSTANCE": {
+          "direction": "LEFT"
+        }
+      }
+    ],
+      "x": 3,
+      "y": 5
     },
     {"actions": [
       {

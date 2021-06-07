@@ -431,10 +431,14 @@ public class GameController {
 
     public void hole(Player player) {
         Space startingSpace = new Space(board, 0,0);
-        if (player.getLives() == 0) {
+        if (player.getLives() != 0) {
             player.setLives(player.getLives() - 1);
             player.setSpace(startingSpace);
         } else player.setSpace(null);
+    }
+
+    public void checkPoint() {
+
     }
 
     class ImpossibleMoveException extends Exception {

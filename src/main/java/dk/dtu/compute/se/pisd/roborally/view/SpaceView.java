@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.*;
+import dk.dtu.compute.se.pisd.roborally.model.Direction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.layout.Pane;
@@ -127,7 +128,10 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             fig.setFill(Color.RED);
 
-            fig.setRotate((90 * gear.getHeading().ordinal()) % 360);
+            if (gear.getDirection() == Direction.LEFT){
+                fig.setRotate((270));
+            } else fig.setRotate(90);
+
             this.getChildren().add(fig);
         }
     }
