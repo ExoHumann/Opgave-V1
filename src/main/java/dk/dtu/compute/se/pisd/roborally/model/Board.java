@@ -136,6 +136,8 @@ public List <Player> getPlayers(){
         }
     }
 
+
+
     public void getNextPlayer() {
         int number = getPlayerNumber(current);
         Player next = getPlayer((number + 1) % getPlayersNumber());
@@ -225,6 +227,7 @@ public List <Player> getPlayers(){
                 ", Player = " + getCurrentPlayer().getName() +
                 ", Step: " + getStep() +
                 ", Lives " + toHearth(getCurrentPlayer().getLives()) +
-                ", Energy Cubes " + getCurrentPlayer().getEnergy_cubes();
+                ", Energy Cubes " + getCurrentPlayer().getEnergy_cubes() +
+                ", Checkpoint: " + getCurrentPlayer().getChekpoints();
     }
 }

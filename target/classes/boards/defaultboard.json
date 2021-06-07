@@ -199,6 +199,19 @@
       "y": 5
     },
     {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoints": 3
+          }
+        }
+      ],
+      "x": 4,
+      "y": 1
+    },
+    {
       "walls": [
         "SOUTH"
       ],
