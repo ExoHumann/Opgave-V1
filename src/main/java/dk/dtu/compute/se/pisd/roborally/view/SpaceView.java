@@ -119,7 +119,7 @@ updateBelt();
 private void updateWalls(){
         Space space = this.space;
 
-       if (space.getWalls().isEmpty())
+       if (!space.getWalls().isEmpty())
 
          for (Heading wall : space.getWalls()) {
 
@@ -138,20 +138,34 @@ private void updateWalls(){
                  break;
 
              case NORTH:
-                 switch (wall) {
-                     case SOUTH:
-                         Line line2 = new Line(2, 2, 2, 2);
-                         line2.setStroke(Color.RED);
-                         line2.setStrokeWidth(5);
-                         pane.getChildren().add(line2);
-                         this.getChildren().add(pane);
-                         break;
+                 Line line2 = new Line(2, 2,SPACE_WIDTH-2,2);
+                 line2.setStroke(Color.RED);
+                 line2.setStrokeWidth(5);
+                 pane.getChildren().add(line2);
+                 this.getChildren().add(pane);
+                 break;
+
+             case WEST:
+                 Line line3 = new Line(2, SPACE_HEIGHT-2,2,2);
+                 line3.setStroke(Color.RED);
+                 line3.setStrokeWidth(5);
+                 pane.getChildren().add(line3);
+                 this.getChildren().add(pane);
+                 break;
+
+             case EAST:
+                 Line line4 = new Line(SPACE_WIDTH-2,SPACE_HEIGHT-2, SPACE_WIDTH-2,  - 2);
+                line4.setStroke(Color.RED);
+                line4.setStrokeWidth(5);
+                pane.getChildren().add(line4);
+                this.getChildren().add(pane);
+                break;
 
 
        }
    }
 }
-    }
+
     private void updateBelt(){
         ConveyorBelt belt = space.getConveyorBelt();
         if (belt != null) {

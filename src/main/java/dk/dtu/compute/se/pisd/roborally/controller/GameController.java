@@ -208,10 +208,11 @@ public class GameController {
                     break;
                 case FAST_FORWARD:
                 case MOVE2:
-                    this.fastForward(player, 2);
+                    this.fastForward(player, player.getHeading());
                     break;
                 case MOVE3:
-                    this.fastForward(player, 3);
+                    this.fastForward(player, player.getHeading());
+                    this.moveForward(player, player.getHeading());
                     break;
                 case POWER_UP:
                     break;
@@ -285,17 +286,23 @@ public class GameController {
 
 
     // TODO Assignment V2
-    public void fastForward(@NotNull Player player, int moveAmount) {
-        Space source = player.getSpace();
-        if (source != null && player.board == source.board) {
-            Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
-            if (target != null && target.getPlayer() == null) {
-                player.setSpace(target);
-               // boardActionFields(target);
-            }
-        }
-
-    }
+ //   public void fastForward(@NotNull Player player, int moveAmount) {
+ //       Space source = player.getSpace();
+ //       if (source != null && player.board == source.board) {
+ //           Space target = board.getNeighbour(source, player.getHeading(), moveAmount);
+ //           if (source.getWalls().contains(player.getHeading())){
+ //               return;}
+ //           if (target.getWalls().contains(player.getHeading().facing())){return;}
+ //           if (target != null && target.getPlayer() == null) {
+ //               player.setSpace(target);
+ //              // boardActionFields(target);
+ //           }
+ //       }
+ //
+ //   }
+    public void fastForward(@NotNull Player player, Heading heading) {
+        moveForward(player,heading);
+    moveForward(player, heading);}
 
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
@@ -341,11 +348,7 @@ public class GameController {
         if (other != null) {
             Space target = board.getNeighbour(space, heading, 1);
 
-            if (space.getWalls().contains(player.getHeading())){
-                throw new ImpossibleMoveException(player, space, heading);}
-            if (target.getWalls().contains(player.getHeading().facing())){
-                throw new ImpossibleMoveException(player, space, heading);}
-
+           // if (target.getWalls().contains(player.getHeading().facing())){throw new ImpossibleMoveException(player, space, heading);}
             if (target != null) {
                 // XXX Note that there might be additional problems with
                 //     infinite recursion here (in some special cases)!
@@ -385,15 +388,20 @@ public class GameController {
             Space space = player.getSpace();
             //heading = player.getHeading();
             Space target = board.getNeighbour(space, heading, 1);
-            if (target != null) {
+
+            if (target != null && !player.getSpace().getWalls().contains(player.getHeading())
+                &&!target.getWalls().contains(player.getHeading().facing()))
+        {
                 try {
                     moveToSpace(player, target, heading);
-
                 } catch (ImpossibleMoveException e) {
+                    }
+
+
                     // we don't do anything here  for now; we just catch the
                     // exception so that we do no pass it on to the caller
                     // (which would be very bad style).
-                }
+
             }
         }
     }
