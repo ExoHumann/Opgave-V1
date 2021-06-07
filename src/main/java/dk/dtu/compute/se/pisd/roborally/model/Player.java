@@ -43,6 +43,7 @@ public class Player extends Subject {
     private String color;
     private int lives;
     private int energy_cubes;
+    private int checkpoint_nr;
 
     private Space space;
     private Heading heading = SOUTH;
@@ -57,6 +58,7 @@ public class Player extends Subject {
         this.lives = 3;
         this.energy_cubes = 5;
         this.space = null;
+        this.checkpoint_nr = 0;
 
         program = new CommandCardField[NO_REGISTERS];
         for (int i = 0; i < program.length; i++) {
@@ -155,6 +157,14 @@ public class Player extends Subject {
         if (energy_cubes != this.energy_cubes) {
             this.energy_cubes = energy_cubes;
             notifyChange();
+        }
+    }
+    public int getCheckpoint_nr (){return checkpoint_nr;}
+
+    public void setCheckpoint_nr(int checkpoint_nr){
+        if (checkpoint_nr == (this.checkpoint_nr +1)){
+    this.checkpoint_nr = checkpoint_nr;
+    notifyChange();
         }
     }
 }
