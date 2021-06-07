@@ -236,6 +236,28 @@
     },
     {"actions": [
       {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+        "INSTANCE": {
+          "checkpoints": 1
+        }
+      }
+    ],
+      "x": 6,
+      "y": 5
+    },
+    {"actions": [
+      {
+        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+        "INSTANCE": {
+          "checkpoints": 2
+        }
+      }
+    ],
+      "x": 1,
+      "y": 6
+    },
+    {"actions": [
+      {
         "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt",
         "INSTANCE": {
           "heading": "WEST"

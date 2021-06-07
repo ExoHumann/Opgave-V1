@@ -31,6 +31,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -90,6 +94,28 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
     }
 
+    private void updateCheckpoint() {
+        Checkpoint checkpoint = space.getChekpoint();
+        if (checkpoint != null) {
+            Text text = new Text();
+            int t = checkpoint.checkpoints;
+            text.setText(Integer.toString(t));
+            text.setX(25);
+            text.setY(25);
+            text.setFill(Color.YELLOWGREEN);
+            text.setStroke(Color.YELLOWGREEN);
+            text.setStrokeWidth(2);
+            text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+            Rectangle fig = new Rectangle(0.0,0.0,75.0 ,75.0 );
+
+            fig.setFill(Color.BLUEVIOLET);
+            this.getChildren().add(fig);
+            this.getChildren().add(text);
+
+        }
+
+    }
+
     @Override
     public void updateView(Subject subject) {
         if (subject == this.space) {
@@ -98,6 +124,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             updateBelt();
             updateFastConveyor();
             updateGear();
+            updateCheckpoint();
         }
         updatePlayer();
     }

@@ -43,6 +43,7 @@ public class Player extends Subject {
     private String color;
     private int lives;
     private int energy_cubes;
+    private int chekpoints;
 
     private Space space;
     private Heading heading = SOUTH;
@@ -147,6 +148,8 @@ public class Player extends Subject {
         }
     }
 
+
+
     public int getEnergy_cubes() {
         return energy_cubes;
     }
@@ -157,4 +160,17 @@ public class Player extends Subject {
             notifyChange();
         }
     }
+
+    public void checkpointsReached(int checkpoints) {
+
+        if (checkpoints == (this.chekpoints +1)){
+            this.chekpoints = checkpoints;
+            notifyChange();
+        }
+    }
+
+    public int getChekpoints(){
+        return chekpoints;
+    }
+
 }

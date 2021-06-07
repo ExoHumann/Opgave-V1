@@ -107,6 +107,12 @@
           "INSTANCE": {
             "heading": "NORTH"
           }
+        },
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoints": 2
+          }
         }
       ],
       "x": 1,
@@ -220,6 +226,19 @@
         }
       ],
       "x": 5,
+      "y": 5
+    },
+    {
+      "walls": [],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint",
+          "INSTANCE": {
+            "checkpoints": 1
+          }
+        }
+      ],
+      "x": 6,
       "y": 5
     },
     {

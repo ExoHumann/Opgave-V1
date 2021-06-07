@@ -88,6 +88,18 @@ public class Space extends Subject {
         return hole;
     }
 
+    public Checkpoint getChekpoint() {
+
+        Checkpoint checkpoint = null;
+
+        for (FieldAction action : this.actions){
+            if (action instanceof Checkpoint && checkpoint == null){
+                checkpoint = (Checkpoint) action;
+            }
+        }
+        return checkpoint;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -102,9 +114,6 @@ public class Space extends Subject {
         }
         return belt;
     }
-
-
-
 
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;
