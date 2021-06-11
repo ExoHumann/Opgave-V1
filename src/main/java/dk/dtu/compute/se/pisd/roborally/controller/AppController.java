@@ -77,7 +77,7 @@ public class AppController implements Observer {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = LoadBoard.loadBoard(null);
+            Board board = LoadBoard.loadBoard("Board2");
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -106,7 +106,7 @@ public class AppController implements Observer {
 
         if (gameController == null) {
 
-            LoadBoard.loadBoard(null);
+            LoadBoard.loadBoard("Board2.json");
             newGame();
         }
     }

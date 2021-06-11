@@ -156,8 +156,8 @@ public class SpaceView extends StackPane implements ViewObserver {
             fig.setFill(Color.RED);
 
             if (gear.getDirection() == Direction.LEFT){
-                fig.setRotate((270));
-            } else fig.setRotate(90);
+                fig.setRotate((90));
+            } else fig.setRotate(270);
 
             this.getChildren().add(fig);
         }

@@ -166,7 +166,14 @@ public class Player extends Subject {
         if (checkpoints == (this.chekpoints +1)){
             this.chekpoints = checkpoints;
             notifyChange();
+        } else if (checkpoints == 3){
+            initializeWin();
         }
+
+    }
+
+    private void initializeWin() {
+        System.out.println("You have won the game");
     }
 
     public int getChekpoints(){
