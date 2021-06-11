@@ -83,7 +83,7 @@ public class Space extends Subject {
     public FastConveyorBelt getFastConveyor() {
         FastConveyorBelt fb = null;
 
-        for (FieldAction action : this.actions) {
+        for (FieldAction action : actions) {
             if (action instanceof FastConveyorBelt && fb == null) {
                 fb = (FastConveyorBelt) action;
             }
@@ -104,7 +104,7 @@ public class Space extends Subject {
 
         Gear gear = null;
 
-        for (FieldAction action : this.actions) {
+        for (FieldAction action : actions) {
             if (action instanceof Gear && gear == null) {
                 gear = (Gear) action;
             }
