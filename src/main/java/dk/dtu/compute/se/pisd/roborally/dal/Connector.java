@@ -39,8 +39,8 @@ class Connector {
 	
     private static final String HOST     = "localhost";
     private static final int    PORT     = 3306;
-    private static final String DATABASE = "pisu";
-    private static final String USERNAME = "user";
+    private static final String DATABASE = "Roborally";
+    private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 
     private static final String DELIMITER = ";;";
@@ -52,6 +52,7 @@ class Connector {
 			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			System.out.println("connected to DB");
 
 			createDatabaseSchema();
 		} catch (SQLException e) {
@@ -70,13 +71,15 @@ class Connector {
     	try {
     		connection.setAutoCommit(false);
     		Statement statement = connection.createStatement();
+
+
     		for (String sql : createTablesStatement.split(DELIMITER)) {
     			if (!StringUtils.isEmptyOrWhitespaceOnly(sql)) {
     				statement.executeUpdate(sql);
     			}
     		}
 
-    		statement.close();
+			statement.close();
     		connection.commit();
     	} catch (SQLException e) {
     		e.printStackTrace();

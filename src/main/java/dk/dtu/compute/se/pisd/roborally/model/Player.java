@@ -44,6 +44,28 @@ public class Player extends Subject {
     private int lives;
     private int energy_cubes;
     private int chekpoints;
+    private int DBNumber;
+    private int PlayerNumber;
+
+    public int getPlayerNumber() {
+        return PlayerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        PlayerNumber = playerNumber;
+    }
+
+
+
+    public int getDBNumber() {
+        return DBNumber;
+    }
+
+    public void setDBNumber(int DBNumber) {
+        this.DBNumber = DBNumber;
+    }
+
+
 
     private Space space;
     private Heading heading = SOUTH;
