@@ -4,19 +4,22 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import org.jetbrains.annotations.NotNull;
 
-public class CheckPoint extends FieldAction {
-    private int number;
+public class Checkpoint extends FieldAction  {
 
-public CheckPoint (int number){
-this.number= number;
-}
+    public final int checkpoints;
+
+    public Checkpoint(int checkpoints) {
+        this.checkpoints = checkpoints;
+    }
 
     @Override
-   public boolean doAction(@NotNull GameController gameController, @NotNull Space space){
-Player player = space.getPlayer();
-player.setCheckpoint_nr(number);
+    public boolean doAction(@NotNull GameController gameController, @NotNull Space space){
 
+        if (space.getPlayer() != null){
+            space.getPlayer().checkpointsReached(checkpoints);
+        }
 
-   return true;
+        return true;
     }
+
 }

@@ -22,9 +22,10 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.Checkpoint;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
-import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt;
+import dk.dtu.compute.se.pisd.roborally.controller.Gear;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
@@ -33,6 +34,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 /**
  * ...
@@ -165,9 +167,65 @@ private void updateWalls(){
        }
    }
 }
+    public void updateFastConveyor(){
+        FastConveyorBelt belt = space.getFastConveyor();
+        if (belt != null) {
+
+            Polygon fig = new Polygon(0.0, 0.0,
+                    60.0, 0.0,
+                    30.0, 60.0);
+
+            fig.setFill(Color.GREENYELLOW);
+
+            fig.setRotate((90 * belt.getHeading().ordinal()) % 360);
+            this.getChildren().add(fig);
+        }
+    }
+    private void updateGear() {
+        Gear gear = space.getGear();
+        if (gear != null) {
+            Polygon fig = new Polygon(0.0, 0.0,
+                    60.0, 0.0,
+                    30.0, 60.0);
+
+            fig.setFill(Color.RED);
+
+            if (gear.getDirection() == Direction.LEFT){
+                fig.setRotate((270));
+            } else fig.setRotate(90);
+
+            this.getChildren().add(fig);
+        }
+    }
+    private void updateCheckpoint() {
+        Checkpoint checkpoint = space.getCheckpoint();
+        if (checkpoint != null) {
+            Text text = new Text;
+            int t = checkpoint.checkpoints;
+            text.setText(Integer.toString(t));
+            text.setX(25);
+            text.setY(25);
+            text.setFill(Color.YELLOWGREEN);
+            text.setStroke(Color.YELLOWGREEN);
+            text.setStrokeWidth(2);
+            text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+            Rectangle fig = new Rectangle(0.0,0.0,75.0 ,75.0 );
+
+            fig.setFill(Color.BLUEVIOLET);
+            this.getChildren().add(fig);
+            this.getChildren().add(text);
+
+        }
+
+    }
+
+
+
+
+
 
     private void updateBelt(){
-        ConveyorBelt belt = space.getConveyorBelt();
+        ConveyorBelt belt = space.getNormalBelt();
         if (belt != null) {
 
             Polygon fig = new Polygon(0.0, 0.0,

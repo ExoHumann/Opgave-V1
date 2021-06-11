@@ -111,7 +111,7 @@ class GameControllerTest {
 
         space.getActions().add(checkp);
 
-        space.getChekpoint().doAction(gameController, space);
+        space.getCheckpoint().doAction(gameController, space);
 
         int updated= current.getCheckpoints();
 

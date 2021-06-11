@@ -416,7 +416,7 @@ public class GameController {
 
         }
         if (space.x==0 && space.y==0){
-            space.getConveyorBelt();
+            space.getNormalBelt();
         }
     }
 
