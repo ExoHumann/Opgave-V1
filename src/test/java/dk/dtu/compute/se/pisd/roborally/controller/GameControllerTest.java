@@ -1,9 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
-import dk.dtu.compute.se.pisd.roborally.model.Board;
-import dk.dtu.compute.se.pisd.roborally.model.Heading;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
-import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,5 +64,92 @@ class GameControllerTest {
         gameController.turnRight(current);
         Assertions.assertEquals(Heading.WEST, current.getHeading(), "Player 0 should be heading WEST!");
     }
+
+    @Test
+    void uTurn(){
+        Board board = gameController.board;
+        Player current = board.getCurrentPlayer();
+
+
+        gameController.uTurn(current);
+        Assertions.assertEquals(Heading.NORTH, current.getHeading(), "Player 0 should be heading NORTH");
+    }
+
+    @Test
+    void conveyorAction(){
+        ConveyorBelt cb= new ConveyorBelt();
+        cb.setHeading(Heading.WEST);
+        Board board = gameController.board;
+        Player current = board.getCurrentPlayer();
+        Space space = current.getSpace();
+        cb.doAction(gameController, space);
+        Space newSpace= current.getSpace();
+
+        Assertions.assertEquals(Heading.WEST, cb.getHeading());
+        Assertions.assertEquals(newSpace, board.getNeighbour(space, Heading.WEST, 1));
+
+    }
+    @Test
+    void fastConveyorAction(){
+        FastConveyorBelt cb= new FastConveyorBelt();
+        cb.setHeading(Heading.WEST);
+        Board board = gameController.board;
+        Player current = board.getCurrentPlayer();
+        Space space = current.getSpace();
+        cb.doAction(gameController, space);
+        Space newSpace= current.getSpace();
+
+        Assertions.assertEquals(Heading.WEST, cb.getHeading());
+        Assertions.assertEquals(newSpace, board.getNeighbour(space, Heading.WEST, 2));}
+    @Test
+    void checkPointAction() {
+        Board board = gameController.board;
+        Player current = board.getCurrentPlayer();
+        Space space = current.getSpace();
+        int cp = current.getCheckpoints();
+        Checkpoint checkp= new Checkpoint(1);
+
+        space.getActions().add(checkp);
+
+        space.getChekpoint().doAction(gameController, space);
+
+        int updated= current.getCheckpoints();
+
+        Assertions.assertEquals(updated, cp + 1);
+
+
+    }
+    @Test
+    void gearAction(){
+        Board board = gameController.board;
+        Player current = board.getCurrentPlayer();
+        Space space = current.getSpace();
+
+        Gear lg = new Gear();
+        lg.setDirection(Direction.LEFT);
+        Gear rg = new Gear();
+        rg.setDirection(Direction.RIGHT);
+
+        Assertions.assertEquals(lg.getDirection(), Direction.LEFT);
+
+        lg.doAction(gameController,space);
+        Assertions.assertEquals(Heading.EAST, current.getHeading(), "The heading should be east");
+
+        rg.doAction(gameController,space);
+        Assertions.assertEquals(Heading.SOUTH, current.getHeading(), "Heading should now be south once again");
+
+    }
+    @Test
+    void startProgrammingPhase(){
+        gameController.startProgrammingPhase();
+        Assertions.assertEquals(gameController.board.getPhase(), Phase.PROGRAMMING, "Phase should be programming");
+    }
+    @Test
+    void finishProgrammingPhase(){
+        gameController.finishProgrammingPhase();
+        Assertions.assertEquals(gameController.board.getPhase(), Phase.ACTIVATION, "Phase should be Activation");
+
+    }
+
 
 }
