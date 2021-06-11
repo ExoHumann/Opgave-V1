@@ -22,10 +22,11 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.Checkpoint;
+import dk.dtu.compute.se.pisd.roborally.controller.CheckPoint;
 import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.controller.Gear;
+import dk.dtu.compute.se.pisd.roborally.model.Direction;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
@@ -35,6 +36,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
 
 /**
  * ...
@@ -112,10 +117,14 @@ updateBelt();
         if (subject == this.space) {
             this.getChildren().clear();
             updateBelt();
+            updateBelt();
+            updateFastConveyor();
+            updateGear();
+           // updateCheckpoint();
         }
-
-            updatePlayer();
         updateWalls();
+            updatePlayer();
+
         }
 
 private void updateWalls(){
@@ -197,10 +206,10 @@ private void updateWalls(){
             this.getChildren().add(fig);
         }
     }
-    private void updateCheckpoint() {
-        Checkpoint checkpoint = space.getCheckpoint();
+  /*  private void updateCheckpoint() {
+        CheckPoint checkpoint = space.getCheckpoint();
         if (checkpoint != null) {
-            Text text = new Text;
+            Text text = new Text();
             int t = checkpoint.checkpoints;
             text.setText(Integer.toString(t));
             text.setX(25);
@@ -217,7 +226,8 @@ private void updateWalls(){
 
         }
 
-    }
+    }*/
+
 
 
 

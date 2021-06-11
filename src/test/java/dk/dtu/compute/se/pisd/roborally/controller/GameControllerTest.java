@@ -107,7 +107,7 @@ class GameControllerTest {
         Player current = board.getCurrentPlayer();
         Space space = current.getSpace();
         int cp = current.getCheckpoints();
-        Checkpoint checkp= new Checkpoint(1);
+        CheckPoint checkp= new CheckPoint(1);
 
         space.getActions().add(checkp);
 

@@ -22,10 +22,8 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.Checkpoint;
-import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.controller.*;
+import dk.dtu.compute.se.pisd.roborally.controller.CheckPoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,13 +68,13 @@ public class Space extends Subject {
         return cb;
 
     }
-    public Checkpoint getCheckpoint() {
+    public CheckPoint getCheckpoint() {
 
-        Checkpoint checkpoint = null;
+        CheckPoint checkpoint = null;
 
         for (FieldAction action : actions){
-            if (action instanceof Checkpoint && checkpoint == null){
-                checkpoint = (Checkpoint) action;
+            if (action instanceof CheckPoint && checkpoint == null){
+                checkpoint = (CheckPoint) action;
             }
         }
         return checkpoint;
@@ -100,6 +98,18 @@ public class Space extends Subject {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Gear getGear() {
+
+        Gear gear = null;
+
+        for (FieldAction action : this.actions) {
+            if (action instanceof Gear && gear == null) {
+                gear = (Gear) action;
+            }
+        }
+        return gear;
     }
 
 
