@@ -2,6 +2,7 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.Direction;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,11 +20,11 @@ public class Gear extends FieldAction {
 
     @Override
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
-
+        Player player = space.getPlayer();
         if (direction == Direction.RIGHT) {
-            gameController.turnRight(space.getPlayer());
+            player.setHeading(player.getHeading().prev());
         } else if (direction == Direction.LEFT){
-            gameController.turnLeft(space.getPlayer());
+            player.setHeading(player.getHeading().next());
         }
 
         return true;

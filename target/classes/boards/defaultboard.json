@@ -103,7 +103,7 @@
       "walls": [],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt",
           "INSTANCE": {
             "heading": "NORTH"
           }
@@ -133,9 +133,9 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
           "INSTANCE": {
-            "heading": "SOUTH"
+            "heading": "LEFT"
           }
         }
       ],
@@ -178,7 +178,7 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt",
           "INSTANCE": {
             "heading": "EAST"
           }
@@ -193,102 +193,14 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
           "INSTANCE": {
-            "heading": "SOUTH"
+            "heading": "LEFT"
           }
         }
       ],
       "x": 7,
       "y": 7
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
-        "INSTANCE": {
-          "direction": "RIGHT"
-        }
-      }
-    ],
-      "x": 3,
-      "y": 2
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
-        "INSTANCE": {
-          "direction": "LEFT"
-        }
-      }
-    ],
-      "x": 3,
-      "y": 5
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Hole",
-        "INSTANCE": {
-        }
-      }
-    ],
-      "x": 2,
-      "y": 5
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.CheckPoint",
-        "INSTANCE": {
-          "checkpoints": 1
-        }
-      }
-    ],
-      "x": 6,
-      "y": 5
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.CheckPoint",
-        "INSTANCE": {
-          "checkpoints": 2
-        }
-      }
-    ],
-      "x": 1,
-      "y": 6
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.CheckPoint",
-        "INSTANCE": {
-          "checkpoints": 3
-        }
-      }
-    ],
-      "x": 4,
-      "y": 1
-    },
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.FastConveyorBelt",
-        "INSTANCE": {
-          "heading": "WEST"
-        }
-      }
-    ],
-      "x": 2,
-      "y": 6
-    },
-
-    {"actions": [
-      {
-        "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
-        "INSTANCE": {
-          "direction": "LEFT"
-        }
-      }
-    ],
-      "x": 3,
-      "y": 6
     }
   ]
 }
