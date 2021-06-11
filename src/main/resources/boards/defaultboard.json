@@ -135,7 +135,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
           "INSTANCE": {
-            "heading": "LEFT"
+            "direction": "RIGHT"
           }
         }
       ],
@@ -195,7 +195,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear",
           "INSTANCE": {
-            "heading": "LEFT"
+            "direction": "LEFT"
           }
         }
       ],
