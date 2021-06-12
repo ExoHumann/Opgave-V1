@@ -34,8 +34,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -120,7 +120,7 @@ updateBelt();
             updateBelt();
             updateFastConveyor();
             updateGear();
-           // updateCheckpoint();
+           updateCheckpoint();
         }
         updateWalls();
             updatePlayer();
@@ -206,10 +206,10 @@ private void updateWalls(){
             this.getChildren().add(fig);
         }
     }
-  /*  private void updateCheckpoint() {
+    private void updateCheckpoint() {
         CheckPoint checkpoint = space.getCheckpoint();
         if (checkpoint != null) {
-            Text text = new Text();
+            javafx.scene.text.Text text= new Text();
             int t = checkpoint.checkpoints;
             text.setText(Integer.toString(t));
             text.setX(25);
@@ -226,7 +226,7 @@ private void updateWalls(){
 
         }
 
-    }*/
+    }
 
 
 
